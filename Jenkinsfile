@@ -32,7 +32,7 @@ pipeline {
         }
         stage("Docker build") {
             steps {
-                sh "docker build -t naul23541/calculator ."
+                sh "docker build -t calculator ."
             }
         }
  	}
