@@ -32,10 +32,21 @@ pipeline {
                 sh "./gradlew build"
             }
         }
+        stage('build'){
+            agent{
+            docker{
+                image 'gradle:6.7-jdk11'
+                reuseNode true
+                }
+            }
+            steps{
+                sh 'gradle --version'
+            }
+        }
         stage("Docker build"){
             steps{
-                sh "docker build -t lyruz2354/calculator ."
-            }
+                sh "docker build -t calculator ."
+            }   
         }
 
  	}
