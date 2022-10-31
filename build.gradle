@@ -27,10 +27,10 @@ jacocoTestCoverageVerification {
 
 	violationRules {
 		rule {
-			limit { 
+			limit {
 				minimum = 0.2
-				}
-			}
-			}
+            }
+        }
+    }
 }
 
