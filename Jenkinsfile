@@ -32,6 +32,11 @@ pipeline {
                 sh "./gradlew build"
             }
         }
-       
+        stage("Docker build"){
+            steps{
+                sh "docker build -t lyruz2354/calculator ."
+            }
+        }
+
  	}
 }
