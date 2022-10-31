@@ -6,11 +6,13 @@ pipeline {
  	stages {
  		stage("Compile") {
  			steps {
+ 			    echo 'Compile...'
  				sh "./gradlew compileJava"
  			}
  		}
  		stage("Unit test") {
  			steps {
+ 			    echo 'Testing...'
  				sh "./gradlew test"
  			}
  		}
@@ -30,10 +32,6 @@ pipeline {
                 sh "./gradlew build"
             }
         }
-        stage("Docker build") {
-            steps {
-                sh "docker build -t calculator ."
-            }
-        }
+       
  	}
 }
