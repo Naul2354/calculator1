@@ -1,9 +1,9 @@
 pipeline {
  	agent any
- 	enviroment
- 	{
-        DOCKERHUB_CREDENTIALS=credentials('dockerhub')
- 	}
+ 	environment {
+    		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+    	}
+
 	 triggers {
  		pollSCM('* * * * *')
 	}
