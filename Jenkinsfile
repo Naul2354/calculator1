@@ -1,9 +1,5 @@
 pipeline {
  	agent any
- 	environment {
-    		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
-    	}
-
 	 triggers {
  		pollSCM('* * * * *')
 	}
@@ -49,12 +45,6 @@ pipeline {
                   }
              }
         }
-        stage("Docker push"){
-            steps{
-                withDockerRegistry([ url: 'https://index.docker.io/v1/'])
-                sh "docker push calculator"
-            }
 
-        }
  	}
 }
