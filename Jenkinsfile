@@ -42,12 +42,14 @@ pipeline {
             }
         }
         stage("Docker login") {
-            steps{
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-            }
+             steps {
+                  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials',
+                           usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                       sh "docker login --username $USERNAME --password $PASSWORD"
+                  }
+             }
         }
         stage("Docker push"){
-            docker.withRegistry('https://registry-1.docker.io/v2/', 'DOCKERHUB_CREDENTIALS')
             steps{
                 sh "docker push calculator"
             }
