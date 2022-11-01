@@ -35,19 +35,20 @@ pipeline {
                 sh "./gradlew build"
             }
         }
+        stage("Docker login") {
+                     steps {
+                          withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'DOCKERHUB_CREDENTIALS',
+                                   usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                               sh "docker login --username $USERNAME --password $PASSWORD"
+                          }
+                     }
+                }
         stage("Docker build") {
             steps {
                 sh "docker build -t calculator ."
             }
         }
-        stage("Docker login") {
-             steps {
-                  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'DOCKERHUB_CREDENTIALS',
-                           usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-                       sh "docker login --username $USERNAME --password $PASSWORD"
-                  }
-             }
-        }
+
         stage("Docker push") {
              steps {
                   sh "docker push calculator"
