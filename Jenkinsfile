@@ -45,6 +45,11 @@ pipeline {
                   }
              }
         }
+        stage("Docker push"){
+            steps{
+                sh 'docker push calculator'
+            }
+        }
 
  	}
 }
