@@ -47,10 +47,8 @@ pipeline {
             }
         }
         stage("Docker push"){
-            steps{
                 docker.withRegistry('https://registry-1.docker.io/v2/', 'DOCKERHUB_CREDENTIALS')
-                sh "docker push calculator"
-            }
+                bat "docker push calculator"
         }
  	}
 }
