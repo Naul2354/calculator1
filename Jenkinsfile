@@ -2,7 +2,7 @@ pipeline {
  	agent any
  	enviroment
  	{
-        dockerhub=credentials('dockerhub')
+        DOCKERHUB_CREDENTIALS=credentials('dockerhub')
  	}
 	 triggers {
  		pollSCM('* * * * *')
@@ -42,13 +42,10 @@ pipeline {
             }
         }
         stage("Docker login") {
-            steps {
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials',
-                   usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-               sh "docker login --username $USERNAME --password $PASSWORD"
-          }
-     }
-}
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
         stage("Docker push"){
             steps{
                 sh "docker push calculator"
