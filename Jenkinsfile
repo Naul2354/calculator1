@@ -51,7 +51,7 @@ pipeline {
         }
         stage("Docker push"){
             steps{
-                withDockerRegistry([ url: ''])
+                withDockerRegistry([ url: 'https://index.docker.io/v1/'])
                 sh "docker push calculator"
             }
 
