@@ -38,13 +38,13 @@ pipeline {
             }
         }
         stage("Docker login") {
-             steps {
-                  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials',
-                           usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-                       sh "docker login --username naul23541  --password 0913895985a"
-                  }
-             }
-        }
+            steps {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials',
+                   usernameVariable: 'naul23541', passwordVariable: '0913895985a']]) {
+               sh "docker login --username $USERNAME --password $PASSWORD"
+          }
+     }
+}
         stage("Docker push"){
             steps{
                 sh "docker push calculator"
