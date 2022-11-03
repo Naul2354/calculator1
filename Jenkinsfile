@@ -35,7 +35,7 @@ pipeline {
         }
         stage("Docker build") {
             steps {
-
+                sh "docker version"
                 sh "docker build -t calculator1 ."
             }
         }
