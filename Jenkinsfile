@@ -36,12 +36,12 @@ pipeline {
         stage("Docker build") {
             steps {
 
-                sh "docker build -t calculator ."
+                sh "docker build -t calculator1 ."
             }
         }
         stage("Docker tag "){
             steps{
-                sh "docker tag calculator:latest naul23541/calculator:latest"
+                sh "docker tag calculator1:latest naul23541/calculator1:latest"
             }
         }
         stage("Docker login") {
@@ -51,7 +51,7 @@ pipeline {
         }
         stage("Docker push") {
              steps {
-                  sh "docker push naul23541/calculator:latest "
+                  sh "docker push naul23541/calculator1:latest "
              }
         }
 
