@@ -1,5 +1,6 @@
 pipeline {
  	agent any
+
 	 triggers {
  		pollSCM('* * * * *')
 	}
@@ -34,17 +35,23 @@ pipeline {
         }
         stage("Docker build") {
             steps {
-                sh "docker build -t calculator1 ."
+
+                sh "docker build -t calculator ."
+            }
+        }
+        stage("Docker tag "){
+            steps{
+                sh "docker tag calculator:latest naul23541/calculator:latest"
             }
         }
         stage("Docker login") {
             steps {
-                             sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                             }
-                        }
+                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
         stage("Docker push") {
              steps {
-                  sh "docker push calculator1"
+                  sh "docker push naul23541/calculator:latest "
              }
         }
 
