@@ -34,7 +34,7 @@ pipeline {
         }
         stage("Docker build") {
             steps {
-                sh "docker build -t calculator ."
+                sh "docker build -t calculator1 ."
             }
         }
         stage("Docker login") {
@@ -44,7 +44,7 @@ pipeline {
                         }
         stage("Docker push") {
              steps {
-                  sh "docker push calculator"
+                  sh "docker push calculator1"
              }
         }
 
