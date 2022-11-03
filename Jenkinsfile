@@ -35,17 +35,16 @@ pipeline {
                 sh "./gradlew build"
             }
         }
-        stage("Docker login") {
-                     steps {
-                     sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                     }
-                }
         stage("Docker build") {
             steps {
                 sh "docker build -t calculator ."
             }
         }
-
+        stage("Docker login") {
+            steps {
+                             sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                             }
+                        }
         stage("Docker push") {
              steps {
                   sh "docker push calculator"
