@@ -50,7 +50,7 @@ pipeline {
              		steps {
                   	withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub',
                            usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-                       		sh "docker login --username $USERNAME --password $PASSWORD"
+                       		    sh "docker login --username $USERNAME --password $PASSWORD"
                   			}
              		}
         	}
@@ -72,11 +72,11 @@ pipeline {
             		}
 
 		}
-		stage("Stop and remove container")
+		stage("Stop container")
 		{
 		    steps
 		    {
-		        sh "docker stop calculator && docker rm calculator"
+		        sh "docker stop calculator "
 		    }
 		}
 
