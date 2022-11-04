@@ -72,10 +72,13 @@ pipeline {
             		}
 
 		}
-	post {
- 		always {
- 			sh "docker stop calculator"
- 		}
+		stage("Stop and remove container")
+		{
+		    steps
+		    {
+		        sh "docker stop calculator && docker rm calculator"
+		    }
 		}
+
  	}
 }
