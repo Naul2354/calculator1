@@ -71,6 +71,11 @@ pipeline {
                 sh "./gradlew acceptanceTest -Dcalculator.url=http://localhost:8765"
             }
         }
+    post {
+        always {
+            sh "docker stop calculator"
+     }
+    }
  	}
 
 }
