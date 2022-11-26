@@ -62,7 +62,7 @@ pipeline {
         stage("Deploy to staging")
         	{
             		steps{
-                		sh " docker run -d --rm -p 8768:8080 --name calculator naul23541/calculator"
+                		sh " docker run -d --rm -p 8768:8080 naul23541/calculator"
             		}
         	}
         stage("Acceptance test") {
