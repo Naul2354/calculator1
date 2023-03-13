@@ -72,9 +72,9 @@ pipeline {
             		}
 
 		}
-		stage("Stop container")
+		post
 		{
-		    steps
+		    always
 		    {
 		        sh "docker stop calculator "
 		    }
